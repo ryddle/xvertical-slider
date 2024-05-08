@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-VerticalSlider</title>
+    <style>
+        /** Input range **/
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: -2px;
+            background-color: chocolate;
+            height: 1rem;
+            width: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        input[type="range"]::-webkit-slider-track {
+            background: 'linear-gradient(180deg, #f00 0%, #f00 50%, #0f0 50%, #0f0 100%)';
+            height: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: transparent;
+            height: 0.5rem;
+            width: 0.2rem;
+            margin-left: 0.8rem;
+            border-radius: 0.5rem;
+        }
+
+        input[type="range"] {
+            /* -webkit-appearance: none;
+            appearance: none;*/
+            background: transparent;
+            cursor: pointer;
+            width: 15rem;
+            writing-mode: vertical-rl;
+            direction: rtl;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let container = document.getElementById("container");
+            let config = {
+                container: container,
+                value: 0,
+                min: 0,
+                max: 100,
+                step: 1,
+                width: 5,
+                height: 100,
+                invert: false,
+                callback: function (value) {
+                    console.log(value);
+                }
+            };
+            let slider = new XverticalSlider(config);
+
+
+            let container2 = document.getElementById("container2");
+            let sliderconfig = {
+                container: null,
+                value: 0,
+                min: -12,
+                max: 12,
+                step: 1,
+                width: 12,
+                height: 170,
+                invert: false,
+                showLabel: true,
+                list: "tickmarks",
+                dual_ticks: false,
+                color: {
+                    trackColorBack: '#ffffff',
+                    trackColorOver: 'chocolate',
+                    trackBorderColor: '#dddddd',
+                    thumbColor: 'chocolate',
+                    thumbBorderColor: 'chocolate'
+                },
+                callback: callback
+            }
+            let eqbandSlider = new XverticalSlider(sliderconfig);
+            eqbandSlider.setAttribute("class", "equalizer");
+            eqbandSlider.setAttribute("data-filter", "djsbfj");
+            eqbandSlider.setAttribute("lists", "ticksmap");
+
+            container2.appendChild(eqbandSlider);
+
+            eqbandSlider.addEventListener("change", function (event) {
+                console.log("SHIT", event.detail);
+            });
+
+            function callback(slider) {
+                console.log("shit", slider.value);
+            }
+
+
+
+            let container4 = document.getElementById("container4");
+            let sliderconfig4 = {
+                container: null,
+                value: 0,
+                min: -12,
+                max: 12,
+                step: 1,
+                width: 12,
+                height: 250,
+                invert: false,
+                showLabel: true,
+                list: "tickmarks",
+                dual_ticks: true,
+                tick_mark_thumb: true,
+                color: {
+                    trackColorBack: '#444',
+                    trackColorOver: '#444',
+                    trackBorderColor: '#444',
+                    thumbColor: '#111',
+                    thumbBorderColor: '#92df86',
+                    ticksColor: '#92df86'
+                },
+                callback: callback
+            }
+            let eqbandSlider4 = new XverticalSlider(sliderconfig4);
+            eqbandSlider4.setAttribute("class", "equalizer");
+            eqbandSlider4.setAttribute("data-filter", "djsbfj");
+            eqbandSlider4.setAttribute("lists", "ticksmap");
+
+            container4.appendChild(eqbandSlider4);
+
+            eqbandSlider4.addEventListener("change", function (event) {
+                console.log("SHIT", event.detail);
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="container" style="position: absolute; left: 300px; top: 200px"></div>
+
+    <div id="container2" style="position: absolute; left: 400px; top: 200px"></div>
+
+    <div id="container3" style="position: absolute; left: 500px; top: 200px">
+        <input type="range" min="-12" max="12" value="0" list="tickmarks" />
+    </div>
+
+    <div id="container4" style="position: absolute;
+    z-index: -20;
+    left: 800px;
+    top: 200px;
+    width: 60px;
+    background-color: #888;
+    display: flex;
+    justify-content: center;"></div>
+
+    <datalist id="tickmarks">
+        <option value="-12" label="-12"></option>
+        <option value="-8"></option>
+        <option value="-4"></option>
+        <option value="0" label="0"></option>
+        <option value="4"></option>
+        <option value="8"></option>
+        <option value="12" label="12"></option>
+    </datalist>
+
+    <datalist id="tickmarks2">
+        <option value="-12" label="-12"></option>
+        <option value="-8"></option>
+        <option value="-4"></option>
+        <option value="0" label="0"></option>
+        <option value="4"></option>
+        <option value="8"></option>
+        <option value="12" label="12"></option>
+    </datalist>
+
+
+
+    <script src="xvertical-slider.js"></script>
+</body>
+
+</html>
